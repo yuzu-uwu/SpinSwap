@@ -1,0 +1,14 @@
+[package]
+name = "spin_ve"
+version = "0.1.0"
+
+# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest
+
+[dependencies]
+starknet = ">=1.1.0"
+# https://github.com/keep-starknet-strange/alexandria/commit/8ca88f650fe615b922a95b8bca49f6b45dce2eaa
+alexandria_math = { path = "../alexandria/alexandria/math" }
+spin_lib = {path = "../spin_lib"}
+# openzeppelin = {path = "../openzeppelin"}
+
+[[target.starknet-contract]]
