@@ -23,6 +23,10 @@ fn u64_to_u256(num: u64) -> u256 {
     u256 { low: num.into(), high: 0 }
 }
 
+fn u128_to_u256(num: u128) -> u256 {
+    u256 { low: num, high: 0 }
+}
+
 fn get_block_timestamp_u128() -> u128 {
     get_block_number().into()
 }

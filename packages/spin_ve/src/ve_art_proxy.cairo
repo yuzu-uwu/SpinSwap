@@ -1,27 +1,18 @@
-use core::traits::Destruct;
-use core::debug::PrintTrait;
 #[contract]
 mod VeArtProxy {
     use starknet::ContractAddress;
     use array::ArrayTrait;
     use array::SpanTrait;
-    use openzeppelin::access::ownable::Ownable;
-    use spin_lib::string::utoa;
+    use spin_lib::string::{u128_to_ascii, utoa};
     use spin_lib::array::concat_array;
-
-
-    #[constructor]
-    fn constructor() {
-        Ownable::initializer();
-    }
 
     #[view]
     fn base_uri(
-        _tokenId: u256, _balance_of: u256, _locked_end: u256, _value: u256
+        _tokenId: u256, _balance_of: u256, _locked_end: u128, _value: u256
     ) -> Array<felt252> {
         let tokenId_ascii: Array<felt252> = utoa(_tokenId);
         let balance_of_ascii: Array<felt252> = utoa(_balance_of);
-        let locked_end_ascii: Array<felt252> = utoa(_locked_end);
+        let locked_end_ascii: Array<felt252> = u128_to_ascii(_locked_end);
         let value_ascii: Array<felt252> = utoa(_value);
 
         let mut string_array = ArrayTrait::new();

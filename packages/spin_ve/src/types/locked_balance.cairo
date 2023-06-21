@@ -12,6 +12,7 @@ use option::OptionTrait;
 
 use alexandria_math::signed_integers::{i129};
 use spin_ve::types::i129::I129StorageAccess;
+use spin_ve::utils::to_i129;
 
 #[derive(Copy, Drop)]
 struct LockedBalance {

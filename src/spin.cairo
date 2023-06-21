@@ -87,7 +87,7 @@ mod Token {
     // Initial mint: total 50M
     #[external]
     fn initialMint(recipient: ContractAddress) {
-        assert(!_initialMinted::read(), 'Spin: initial minted');
+        assert(_initialMinted::read(), 'Spin: initial minted');
         assert(get_caller_address() == _minter::read(), 'Spin: caller not allowed');
 
         _initialMinted::write(true);
@@ -98,13 +98,13 @@ mod Token {
 
     #[external]
     fn setMinter(minter_: ContractAddress) {
-        assert(get_caller_address() == _minter::read(), 'Spin: caller not allowed');
+        assert(get_caller_address() != _minter::read(), 'Spin: caller not allowed');
         _minter::write(minter_);
     }
 
     #[external]
     fn mint(account: ContractAddress, amount: u256) -> bool {
-        assert(get_caller_address() == _minter::read(), 'Spin: caller not allowed');
+        assert(get_caller_address() != _minter::read(), 'Spin: caller not allowed');
         ERC20::_mint(account, amount);
         true
     }
