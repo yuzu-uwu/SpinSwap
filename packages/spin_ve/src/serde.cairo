@@ -4,6 +4,7 @@ use option::OptionTrait;
 use serde::Serde;
 use traits::TryInto;
 use alexandria_math::signed_integers::{i129};
+use spin_ve::types::Point;
 
 impl I129Serde of Serde<i129> {
     fn serialize(self: @i129, ref output: Array<felt252>) {
@@ -21,3 +22,11 @@ impl I129Serde of Serde<i129> {
         Option::Some(i129 { inner, sign })
     }
 }
+
+// impl PointSerde of Serde<Point> {
+//     fn serialize(self: @Point, ref output: Array<felt252>) {
+//         self.bias.serialize(ref output);
+//         self.slope.serialize(ref output);
+
+//     }
+// }

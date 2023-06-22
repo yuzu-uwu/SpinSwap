@@ -10,8 +10,7 @@ mod VotingEscrow {
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
     use openzeppelin::utils::constants::{IERC721_ID, IERC721_METADATA_ID};
     use alexandria_math::signed_integers::{i129};
-    use spinswap::interfaces::ve_art_proxy::{IVeArtProxyDispatcher, IVeArtProxyDispatcherTrait};
-    // use spinswap::ve_art_proxy::{IVeArtProxy, IVeArtProxyDispatcher};
+    use spinswap::interfaces::IVEArtProxy::{IVeArtProxyDispatcher, IVeArtProxyDispatcherTrait};
 
     use spin_ve::ve::VE;
     use spin_ve::escrow::Escrow;
@@ -74,6 +73,41 @@ mod VotingEscrow {
     #[view]
     fn decimals() -> u8 {
         IERC20::decimals()
+    }
+
+    #[view]
+    fn epoch() -> u256 {
+        Escrow::_epoch::read()
+    }
+
+    #[view]
+    fn token() -> ContractAddress {
+        VE::_token::read()
+    }
+
+    #[view]
+    fn team() -> ContractAddress {
+        VE::_team::read()
+    }
+
+    #[view]
+    fn point_history(loc: u256) -> Point {
+        Escrow::_point_history::read(loc)
+    }
+
+    #[view]
+    fn user_point_history(token_id: u256, loc: u256) -> Point {
+        Escrow::_user_point_history::read((token_id, loc))
+    }
+
+    #[view]
+    fn user_point_epoch(token_id: u256) -> u256 {
+        Escrow::_user_point_epoch::read(token_id)
+    }
+
+    #[view]
+    fn locked(token_id: u256) -> LockedBalance {
+        Escrow::_locked::read(token_id)
     }
 
     #[external]

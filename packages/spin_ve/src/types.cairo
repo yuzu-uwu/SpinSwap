@@ -2,12 +2,13 @@ use alexandria_math::signed_integers::{i129};
 use spin_ve::storage_access::locked_balance::LockedBalanceStorageAccess;
 use spin_ve::storage_access::point::PointStorageAccess;
 use spin_ve::utils::{to_i129};
+use spin_ve::serde::I129Serde;
 use serde::Serde;
 
 // We cannot really do block numbers per se b/c slope is per time, not per block
 // and per block could be fairly bad b/c Ethereum changes blocktimes.
 // What we can do is to extrapolate ***At functions
-#[derive(Copy, Drop)]
+#[derive(Copy, Drop, Serde)]
 struct Point {
     bias: i129,
     slope: i129, // -dweight / dt
@@ -15,7 +16,7 @@ struct Point {
     blk: u128
 }
 
-#[derive(Copy, Drop)]
+#[derive(Copy, Drop, Serde)]
 struct LockedBalance {
     amount: i129,
     end: u128

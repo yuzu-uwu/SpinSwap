@@ -1,1 +1,2 @@
-mod ve_art_proxy;
+mod IVEArtProxy;
+mod IVotingEscrow;
