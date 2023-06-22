@@ -64,6 +64,11 @@ mod rewards_distributor {
         get_block_timestamp_u128() / WEEK * WEEK
     }
 
+    #[view]
+    fn voting_escrow() -> ContractAddress {
+        _voting_escrow::read()
+    }
+
     #[external]
     fn checkpoint_token() {
         assert(get_caller_address() == _depositor::read(), 'only depositor');

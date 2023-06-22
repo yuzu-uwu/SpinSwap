@@ -8,6 +8,41 @@ use spin_ve::serde::I129Serde;
 
 #[abi]
 trait IVotingEscrow {
+    #[external]
+    fn create_lock(value: u256, lock_duration: u128) -> u256;
+
+    #[view]
+    fn locked(token_id: u256) -> LockedBalance;
+
+    #[view]
+    fn token_of_owner_by_index(owner: ContractAddress, index: u256) -> u256;
+
+
+    #[view]
+    fn token() -> ContractAddress;
+
+    #[view]
+    fn team() -> ContractAddress;
+
+    #[view]
+    fn epoch() -> u256;
+
+    #[view]
+    fn point_history(loc: u256) -> Point;
+
+    #[view]
+    fn user_point_history(token_id: u256, loc: u256) -> Point;
+
+    #[view]
+    fn user_point_epoch(token_id: u256) -> u256;
+
+    #[external]
+    fn set_team(team: ContractAddress);
+
+    #[external]
+    fn set_art_proxy(art_proxy: ContractAddress);
+
+
     #[view]
     fn name() -> felt252;
 
@@ -19,33 +54,6 @@ trait IVotingEscrow {
 
     #[view]
     fn decimals() -> u8;
-
-    #[view]
-    fn epoch() -> u256;
-
-    #[view]
-    fn token() -> ContractAddress;
-
-    #[view]
-    fn team() -> ContractAddress;
-
-    #[view]
-    fn point_history(loc: u256) -> Point;
-
-    #[view]
-    fn user_point_history(token_id: u256, loc: u256) -> Point;
-
-    #[view]
-    fn user_point_epoch(token_id: u256) -> u256;
-
-     #[view]
-    fn locked(token_id: u256) -> LockedBalance;
-
-    #[external]
-    fn set_team(team: ContractAddress);
-
-    #[external]
-    fn set_art_proxy(art_proxy: ContractAddress);
 
     #[external]
     fn token_uri(token_id: u256) -> Array<felt252>;
@@ -80,13 +88,16 @@ trait IVotingEscrow {
     );
 
     #[view]
-    fn token_of_owner_by_index(owner: ContractAddress, index: u256) -> u256;
-
-    #[view]
     fn token_by_index(index: u256) -> u256;
 
     #[view]
     fn supports_interface(interface_id: u32) -> bool;
+
+    #[view]
+    fn voted(token_id: u256) -> bool;
+    #[view]
+    fn attachments(token_id: u256) -> u256;
+
 
     #[view]
     fn get_last_user_slope(token_id: u256) -> i129;
@@ -105,9 +116,6 @@ trait IVotingEscrow {
 
     #[external]
     fn deposit_for(token_id: u256, value: u256);
-
-    #[external]
-    fn create_lock(value: u256, lock_duration: u128) -> u256;
 
     #[external]
     fn increase_amount(token_id: u256, value: u256);

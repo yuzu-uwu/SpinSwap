@@ -315,6 +315,16 @@ mod VotingEscrow {
         total_supply_at_timestamp(get_block_timestamp_u128())
     }
 
+    #[view]
+    fn voted(token_id: u256) -> bool {
+        GaugeVoting::_voted::read(token_id)
+    }
+
+    #[view]
+    fn attachments(token_id: u256) -> u256 {
+        GaugeVoting::_attachments::read(token_id)
+    }
+
     #[external]
     fn set_voter(voter: ContractAddress) {
         GaugeVoting::set_voter(voter)
