@@ -11,12 +11,14 @@ trait IVotingEscrow {
     #[external]
     fn create_lock(value: u256, lock_duration: u128) -> u256;
 
+    #[external]
+    fn create_lock_for(value: u256, lock_duration: u128, to: ContractAddress) -> u256;
+
     #[view]
     fn locked(token_id: u256) -> LockedBalance;
 
     #[view]
     fn token_of_owner_by_index(owner: ContractAddress, index: u256) -> u256;
-
 
     #[view]
     fn token() -> ContractAddress;

@@ -10,7 +10,7 @@ mod Token {
     #[storage]
     struct Storage {
         _minter: ContractAddress,
-        _initialMinted: bool
+        _initial_minted: bool
     }
 
     #[constructor]
@@ -84,20 +84,25 @@ mod Token {
     /// Spin
     ///
 
+    #[viewer]
+    fn minter() -> ContractAddress {
+        _minter::read()
+    }
+
     // Initial mint: total 50M
     #[external]
-    fn initialMint(recipient: ContractAddress) {
-        assert(_initialMinted::read(), 'Spin: initial minted');
+    fn initial_mint(recipient: ContractAddress) {
+        assert(_initial_minted::read(), 'Spin: initial minted');
         assert(get_caller_address() == _minter::read(), 'Spin: caller not allowed');
 
-        _initialMinted::write(true);
+        _initial_minted::write(true);
 
         // 50 * 1e6 * 1e18
         ERC20::_mint(recipient, 50 * 1_000_000_u256 * 1_000_000_000_000_000_000_u256);
     }
 
     #[external]
-    fn setMinter(minter_: ContractAddress) {
+    fn set_minter(minter_: ContractAddress) {
         assert(get_caller_address() != _minter::read(), 'Spin: caller not allowed');
         _minter::write(minter_);
     }

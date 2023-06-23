@@ -255,6 +255,19 @@ mod VotingEscrow {
         token_id
     }
 
+     /// @notice Deposit `_value` tokens for `_to` and lock for `_lock_duration`
+    /// @param _value Amount to deposit
+    /// @param _lock_duration Number of seconds to lock tokens for (rounded down to nearest week)
+    /// @param _to Address to deposit
+    #[external]
+    fn create_lock_for(value: u256, lock_duration: u128, to: ContractAddress) -> u256 {
+        ReentrancyGuard::start();
+        let token_id = Escrow::_create_lock(value, lock_duration, to);
+        ReentrancyGuard::end();
+
+        token_id
+    }
+
     #[external]
     fn increase_amount(token_id: u256, value: u256) {
         ReentrancyGuard::start();
