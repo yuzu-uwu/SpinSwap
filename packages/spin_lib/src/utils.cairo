@@ -40,3 +40,15 @@ fn and_and(a: bool, b: bool) -> bool {
 
     false
 }
+
+fn or(a: bool, b: bool) -> bool {
+    if a {
+        return true;
+    }
+
+    if b {
+        return true;
+    }
+
+    return false;
+}
