@@ -55,17 +55,16 @@ impl RewardStorageAccess of StorageAccess<Reward> {
 
 #[contract]
 mod Bribe {
-    use starknet::{ContractAddress, get_caller_address, get_contract_address};
     use core::array::ArrayTrait;
     use zeroable::Zeroable;
+    use starknet::{ContractAddress, get_caller_address, get_contract_address};
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
-    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
     use openzeppelin::access::ownable::Ownable;
+    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
     use spin_lib::utils::{
         get_block_timestamp_u128, get_block_number_u128, and_and, or, u128_to_u256
     };
     use super::Reward;
-
     use spinswap::interfaces::IVoter::{IVoterDispatcher, IVoterDispatcherTrait};
     use spinswap::interfaces::IMinter::{IMinterDispatcher, IMinterDispatcherTrait};
     use spinswap::interfaces::IVotingEscrow::{
@@ -491,16 +490,16 @@ mod Bribe {
     }
 
     /// @notice Set a new voter
-       #[external]
-    fn set_voter(voter_: ContractAddress)  {
+    #[external]
+    fn set_voter(voter_: ContractAddress) {
         _assert_only_allowed();
-        
+
         _voter_contract::write(voter_);
     }
 
     /// @notice Set a new minter
     #[external]
-    fn set_minter(minter_: ContractAddress)  {
+    fn set_minter(minter_: ContractAddress) {
         _assert_only_allowed();
 
         _minter_contract::write(minter_);
@@ -508,7 +507,7 @@ mod Bribe {
 
     /// @notice Set a new owner
     #[external]
-    fn set_owner(owner_: ContractAddress)  {
+    fn set_owner(owner_: ContractAddress) {
         _assert_only_allowed();
         assert(owner_.is_non_zero(), 'cannot set a zero address');
         Ownable::_transfer_ownership(owner_);
