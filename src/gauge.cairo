@@ -68,6 +68,20 @@ mod Gauge {
     #[event]
     fn EmergencyDeactivated(gauge: ContractAddress, timestamp: u128) {}
 
+     #[constructor]
+    fn cnstructor(reward_token_: ContractAddress, ve_: ContractAddress, token_: ContractAddress, distribution_: ContractAddress, internal_bribe_: ContractAddress, is_for_pair_: bool) {
+        _reward_token_contract::write(reward_token_);
+        _ve_contract:: write(ve_);
+        _token_address::write(token_);
+        _duration::write(7 * 86400); // 7 days
+
+        _internal_bribe::write(internal_bribe_);
+
+        _is_for_pair::write(is_for_pair_);
+
+        _emergency::write(false);
+    }
+
     fn _token() -> IERC20Dispatcher {
         IERC20Dispatcher { contract_address: _token_address::read() }
     }
@@ -178,6 +192,21 @@ mod Gauge {
     #[view]
     fn balance_of(account: ContractAddress) -> u256 {
         _balances::read(account)
+    }
+
+    #[view]
+    fn reward_rate() -> u256 {
+        _reward_rate::read()
+    }
+
+    #[view]
+    fn is_for_pair() -> bool {
+        _is_for_pair::read()
+    }
+
+    #[view]
+    fn token() -> ContractAddress {
+        _token_address::read()
     }
 
     ///@notice last time reward
@@ -379,7 +408,7 @@ mod Gauge {
         ReentrancyGuard::start();
         let (claimed_0, claimed_1) = _claim_fees();
         ReentrancyGuard::end();
-        
+
         (claimed_0, claimed_1)
     }
 
