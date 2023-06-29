@@ -6,4 +6,5 @@ mod minter;
 mod bribes;
 mod gauge;
 mod gauge_extra_rewarder;
+mod factories;
 mod interfaces;
