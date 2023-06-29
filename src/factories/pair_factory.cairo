@@ -68,6 +68,11 @@ mod PairFactory {
     }
 
     #[view]
+    fn is_pair(pair_: ContractAddress) -> bool {
+        _is_pair::read(pair_)
+    }
+
+    #[view]
     fn pairs() -> Array<ContractAddress> {
         let pair_index = _all_pair_index::read();
         let mut pairs_array: Array<ContractAddress> = ArrayTrait::new();
@@ -172,6 +177,11 @@ mod PairFactory {
     #[view]
     fn get_initializable() -> (ContractAddress, ContractAddress, bool) {
         (_temp0::read(), _temp1::read(), _temp::read())
+    }
+
+    #[view]
+    fn get_pair(token_a: ContractAddress, token_b: ContractAddress, stable_: bool) -> ContractAddress {
+        _get_pair::read((token_a, token_b, stable_))
     }
 
     #[external]
