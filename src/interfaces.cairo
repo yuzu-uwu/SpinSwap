@@ -7,3 +7,6 @@ mod IMinter;
 mod IBribe;
 mod IPair;
 mod IGauge;
+mod IPairFactory;
+mod IPairCallee;
+mod IPairFees;
