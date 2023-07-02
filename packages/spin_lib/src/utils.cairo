@@ -32,13 +32,19 @@ fn get_block_timestamp_u128() -> u128 {
 }
 
 fn and_and(a: bool, b: bool) -> bool {
-    if a {
-        if b {
-            return true;
-        }
-    }
-
-    false
+    // logical_and
+    let a_bit = if a {
+        1
+    } else {
+        0
+    };
+    let b_bit = if b {
+        1
+    } else {
+        0
+    };
+    let result = a_bit * b_bit;
+    result != 0
 }
 
 fn or(a: bool, b: bool) -> bool {

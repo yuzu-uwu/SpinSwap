@@ -8,7 +8,7 @@ mod PairFactory {
         ContractAddress, contract_address_to_felt252, get_caller_address, get_contract_address
     };
     use starknet::class_hash::ClassHash;
-        use starknet::syscalls::deploy_syscall;
+    use starknet::syscalls::deploy_syscall;
     use integer::u256_from_felt252;
     use hash::LegacyHash;
 
@@ -31,6 +31,7 @@ mod PairFactory {
         _is_pair: LegacyMap<ContractAddress,
         bool>, // // simplified check if its a pair, given that `stable` flag might not be available in peripherals
         _pair_class_hash: ClassHash,
+        _pair_fees_class_hash: ClassHash,
         _temp0: ContractAddress, // temp for create pair contract
         _temp1: ContractAddress,
         _temp: bool,
@@ -46,7 +47,7 @@ mod PairFactory {
     ) {}
 
     #[constructor]
-    fn cnstructor(pair_class_hash_: ClassHash) {
+    fn cnstructor(pair_class_hash_: ClassHash, pair_fees_clash_hash_: ClassHash) {
         let caller = get_caller_address();
 
         _pauser::write(caller);
@@ -60,6 +61,7 @@ mod PairFactory {
         _max_fee::write(25); // 0.25%
 
         _pair_class_hash::write(pair_class_hash_);
+        _pair_fees_class_hash::write(pair_fees_clash_hash_);
     }
 
     #[view]
@@ -70,6 +72,11 @@ mod PairFactory {
     #[view]
     fn is_pair(pair_: ContractAddress) -> bool {
         _is_pair::read(pair_)
+    }
+
+    #[view]
+    fn is_paused() -> bool {
+        _is_paused::read()
     }
 
     #[view]
@@ -90,6 +97,21 @@ mod PairFactory {
     #[view]
     fn pair_by_index(pair_index_: u256) -> ContractAddress {
         _all_pairs::read(pair_index_)
+    }
+
+    #[view]
+    fn dibs() -> ContractAddress {
+        _dibs::read()
+    }
+
+    #[view]
+    fn max_referral_fee() -> u256 {
+        _max_referral_fee::read()
+    }
+
+    #[view]
+    fn staking_nft_fee() -> u256 {
+        _staking_nft_fee::read()
     }
 
     #[external]
@@ -175,12 +197,24 @@ mod PairFactory {
     }
 
     #[view]
+    fn pair_fees_class_hash() -> ClassHash {
+        _pair_fees_class_hash::read()
+    }
+
+    #[view]
+    fn staking_fee_handler() -> ContractAddress {
+        _staking_fee_handler::read()
+    }
+
+    #[view]
     fn get_initializable() -> (ContractAddress, ContractAddress, bool) {
         (_temp0::read(), _temp1::read(), _temp::read())
     }
 
     #[view]
-    fn get_pair(token_a: ContractAddress, token_b: ContractAddress, stable_: bool) -> ContractAddress {
+    fn get_pair(
+        token_a: ContractAddress, token_b: ContractAddress, stable_: bool
+    ) -> ContractAddress {
         _get_pair::read((token_a, token_b, stable_))
     }
 
@@ -201,15 +235,19 @@ mod PairFactory {
         _temp1::write(token_1);
         _temp::write(stable_);
 
-
         let empyt_array = ArrayTrait::<felt252>::new().span();
 
-        let (pair_address, deploy_data) = deploy_syscall(_pair_class_hash::read(), salt, empyt_array, false).unwrap_syscall();
+        let (pair_address, deploy_data) = deploy_syscall(
+            _pair_class_hash::read(), salt, empyt_array, false
+        )
+            .unwrap_syscall();
         _get_pair::write((token_0, token_1, stable_), pair_address);
-        _get_pair::write((token_1, token_0, stable_), pair_address); // populate mapping in the reverse direction
+        _get_pair::write(
+            (token_1, token_0, stable_), pair_address
+        ); // populate mapping in the reverse direction
         let new_index = append_pair(pair_address);
         _is_pair::write(pair_address, true);
-        
+
         PairCreated(token_0, token_1, stable_, pair_address, new_index);
         pair_address
     }

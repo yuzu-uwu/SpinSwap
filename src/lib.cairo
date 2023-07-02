@@ -8,4 +8,5 @@ mod gauge;
 mod gauge_extra_rewarder;
 mod factories;
 mod pair_fees;
+mod pair;
 mod interfaces;
