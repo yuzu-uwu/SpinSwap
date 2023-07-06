@@ -14,6 +14,27 @@ trait IGauge {
     #[external]
     fn claim_Fees() -> (u256, u256);
 
+    #[external]
+    fn set_distribution(distro_: ContractAddress);
+
+    #[external]
+    fn activate_emergency_mode();
+
+    #[external]
+    fn stop_emergency_mode();
+
+    #[external]
+    fn set_internal_bribe(intbribe: ContractAddress);
+
+    #[external]
+    fn set_rewarder_pid(pid: u256);
+
+    #[external]
+    fn set_gauge_rewarder(gr_: ContractAddress);
+
+    #[external]
+    fn set_fee_vault(fee_vault: ContractAddress);
+
     #[view]
     fn reward_rate(pair: ContractAddress) -> u256;
 

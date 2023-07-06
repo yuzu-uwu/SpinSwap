@@ -10,3 +10,4 @@ mod IGauge;
 mod IPairFactory;
 mod IPairCallee;
 mod IPairFees;
+mod IPermissionsRegistry;

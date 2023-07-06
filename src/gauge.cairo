@@ -69,7 +69,8 @@ mod Gauge {
     fn EmergencyDeactivated(gauge: ContractAddress, timestamp: u128) {}
 
      #[constructor]
-    fn cnstructor(reward_token_: ContractAddress, ve_: ContractAddress, token_: ContractAddress, distribution_: ContractAddress, internal_bribe_: ContractAddress, is_for_pair_: bool) {
+    fn constructor(reward_token_: ContractAddress, ve_: ContractAddress, token_: ContractAddress, distribution_: ContractAddress, internal_bribe_: ContractAddress, is_for_pair_: bool) {
+        Ownable::transfer_ownership(get_caller_address());
         _reward_token_contract::write(reward_token_);
         _ve_contract:: write(ve_);
         _token_address::write(token_);
