@@ -16,4 +16,22 @@ trait IBribe {
 
     #[external]
     fn notify_reward_amount(rewards_token_: ContractAddress, reward: u256);
+
+    #[external]
+    fn add_reward(rewards_token_: ContractAddress);
+
+    #[external]
+    fn set_voter(voter_: ContractAddress);
+
+    #[external]
+    fn set_minter(minter_: ContractAddress);
+
+    #[external]
+    fn set_owner(owner_: ContractAddress);
+
+    #[external]
+    fn emergency_recover_erc20(token_address: ContractAddress, token_amount: u256);
+
+    #[external]
+    fn recover_erc20_and_update_data(token_address: ContractAddress, token_amount: u256);
 }
