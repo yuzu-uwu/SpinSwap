@@ -2,8 +2,9 @@
 mod GaugeVoting {
     use starknet::{ContractAddress, get_caller_address};
     use array::SpanTrait;
-    use openzeppelin::tokens::erc721::{ERC721};
-    use openzeppelin::tokens::erc20::{ERC20, IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc721::{ERC721};
+    use openzeppelin::token::erc20::ERC20;
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
     use spin_ve::ve::VE;
     use spin_ve::escrow::{Escrow, MAXTIME};
     use spin_ve::types::{LockedBalance, DepositType};

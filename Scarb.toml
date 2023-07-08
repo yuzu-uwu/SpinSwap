@@ -8,7 +8,7 @@ version = "0.1.0"
 starknet = ">=1.1.0"
 
 # https://github.com/keep-starknet-strange/alexandria/commit/8ca88f650fe615b922a95b8bca49f6b45dce2eaa
-alexandria_math = { path = "./packages/alexandria/alexandria/math" }
+alexandria_math = { path = "./packages/alexandria_math" }
 spin_lib = {path = "./packages/spin_lib"}
 spin_ve = {path = "./packages/spin_ve"}
 openzeppelin = {path = "./packages/openzeppelin"}

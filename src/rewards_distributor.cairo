@@ -12,7 +12,8 @@ mod rewards_distributor {
     use spin_lib::math::Math;
     use spin_ve::utils::to_i129;
     use spin_ve::types::{Point};
-    use openzeppelin::tokens::erc20::{ERC20, IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc20::ERC20;
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
     use openzeppelin::access::ownable::Ownable;
     use spinswap::interfaces::IVotingEscrow::{
         IVotingEscrowDispatcher, IVotingEscrowDispatcherTrait

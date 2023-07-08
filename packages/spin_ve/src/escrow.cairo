@@ -27,8 +27,9 @@ mod Escrow {
     use spin_ve::ve::VE;
     use spin_ve::gauge_voting::GaugeVoting;
     use spin_lib::utils::{get_block_timestamp_u128, get_block_number_u128, and_and, u128_to_u256};
-    use openzeppelin::tokens::erc20::{ERC20, IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
-    use openzeppelin::tokens::erc721::{ERC721};
+    use openzeppelin::token::erc20::ERC20;
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc721::{ERC721};
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
 
 

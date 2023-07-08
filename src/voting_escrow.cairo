@@ -4,9 +4,10 @@ mod VotingEscrow {
     use starknet::{ContractAddress, get_caller_address, get_contract_address};
     use array::ArrayTrait;
     use zeroable::Zeroable;
-    use openzeppelin::introspection::erc165::ERC165;
-    use openzeppelin::tokens::erc721::{ERC721};
-    use openzeppelin::tokens::erc20::{ERC20, IERC20};
+    use openzeppelin::introspection::src5::SRC5;
+    use openzeppelin::token::erc721::{ERC721};
+    use openzeppelin::token::erc20::ERC20;
+    use openzeppelin::token::erc20::interface::IERC20;
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
     use openzeppelin::utils::constants::{IERC721_ID, IERC721_METADATA_ID};
     use alexandria_math::signed_integers::{i129};
@@ -45,8 +46,8 @@ mod VotingEscrow {
 
         Escrow::_point_history::write(0, point);
 
-        ERC165::register_interface(IERC721_ID);
-        ERC165::register_interface(IERC721_METADATA_ID);
+        SRC5::register_interface(IERC721_ID);
+        SRC5::register_interface(IERC721_METADATA_ID);
 
         // token 0: mint-ish
         ERC721::Transfer(Zeroable::zero(), get_contract_address(), 0);
@@ -201,8 +202,8 @@ mod VotingEscrow {
     }
 
     #[view]
-    fn supports_interface(interface_id: u32) -> bool {
-        ERC165::supports_interface(interface_id)
+    fn supports_interface(interface_id: felt252) -> bool {
+        SRC5::supports_interface(interface_id)
     }
 
     //////////////////////////////////////////////////////////////

@@ -71,8 +71,8 @@ mod Pair {
     use starknet::syscalls::deploy_syscall;
     use openzeppelin::utils::serde::SpanSerde;
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
-    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
-    use openzeppelin::tokens::erc20::{ERC20, IERC20};
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc20::ERC20;
     use spinswap::interfaces::IPairFees::{IPairFeesDispatcherTrait, IPairFeesDispatcher};
     use spinswap::interfaces::IPairFactory::{IPairFactoryDispatcherTrait, IPairFactoryDispatcher};
     use spinswap::interfaces::IPairCallee::{IPairCalleeDispatcherTrait, IPairCalleeDispatcher};
@@ -204,57 +204,57 @@ mod Pair {
 
     #[view]
     fn name() -> felt252 {
-        IERC20::name()
+        ERC20::name()
     }
 
     #[view]
     fn symbol() -> felt252 {
-        IERC20::symbol()
+        ERC20::symbol()
     }
 
     #[view]
     fn decimals() -> u8 {
-        IERC20::decimals()
+        ERC20::decimals()
     }
 
     #[view]
     fn total_supply() -> u256 {
-        IERC20::total_supply()
+        ERC20::total_supply()
     }
 
     #[view]
     fn balance_of(account: ContractAddress) -> u256 {
-        IERC20::balance_of(account)
+        ERC20::balance_of(account)
     }
 
     #[view]
     fn allowance(owner: ContractAddress, spender: ContractAddress) -> u256 {
-        IERC20::allowance(owner, spender)
+        ERC20::allowance(owner, spender)
     }
 
     #[external]
     fn transfer(recipient: ContractAddress, amount: u256) -> bool {
-        IERC20::transfer(recipient, amount)
+        ERC20::transfer(recipient, amount)
     }
 
     #[external]
     fn transfer_from(sender: ContractAddress, recipient: ContractAddress, amount: u256) -> bool {
-        IERC20::transfer_from(sender, recipient, amount)
+        ERC20::transfer_from(sender, recipient, amount)
     }
 
     #[external]
     fn approve(spender: ContractAddress, amount: u256) -> bool {
-        IERC20::approve(spender, amount)
+        ERC20::approve(spender, amount)
     }
 
     #[external]
     fn increase_allowance(spender: ContractAddress, added_value: u256) -> bool {
-        IERC20::increase_allowance(spender, added_value)
+        ERC20::increase_allowance(spender, added_value)
     }
 
     #[external]
     fn decrease_allowance(spender: ContractAddress, subtracted_value: u256) -> bool {
-        IERC20::decrease_allowance(spender, subtracted_value)
+        ERC20::decrease_allowance(spender, subtracted_value)
     }
 
     ///

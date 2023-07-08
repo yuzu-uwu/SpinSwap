@@ -81,7 +81,7 @@ impl PoolInfoStorageAccess of StorageAccess<PoolInfo> {
 mod GaugeExtraRewarder {
     use zeroable::Zeroable;
     use starknet::{ContractAddress, get_caller_address, get_contract_address};
-    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
     use openzeppelin::access::ownable::Ownable;
     use spin_lib::utils::{
         get_block_timestamp_u128, get_block_number_u128, and_and, or, u128_to_u256

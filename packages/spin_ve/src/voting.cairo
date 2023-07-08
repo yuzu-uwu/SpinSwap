@@ -2,7 +2,7 @@
 mod Voting {
     use starknet::ContractAddress;
     use zeroable::Zeroable;
-    use openzeppelin::tokens::erc721::{ERC721};
+    use openzeppelin::token::erc721::{ERC721};
     use spin_lib::erc721_enumerable::{ERC721Enumerable};
     use spin_lib::utils::{get_block_timestamp_u128, and_and};
     use spin_ve::gauge::Gauge;

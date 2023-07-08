@@ -10,7 +10,7 @@ name = "spin_ve"
 [dependencies]
 starknet = ">=1.1.0"
 # https://github.com/keep-starknet-strange/alexandria/commit/8ca88f650fe615b922a95b8bca49f6b45dce2eaa
-alexandria_math = { path = "../alexandria/alexandria/math" }
+alexandria_math = { path = "../alexandria_math" }
 spin_lib = {path = "../spin_lib"}
 openzeppelin = {path = "../openzeppelin"}
 

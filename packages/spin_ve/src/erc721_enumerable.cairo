@@ -1,8 +1,7 @@
 #[contract]
 mod ERC721Enumerable {
     use starknet::ContractAddress;
-    use openzeppelin::tokens::erc721::{ERC721};
-    use openzeppelin::utils::constants::IERC721_ENUMERABLE_ID;
+    use openzeppelin::token::erc721::{ERC721};
 
     #[storage]
     struct Storage {

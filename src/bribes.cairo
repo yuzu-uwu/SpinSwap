@@ -60,7 +60,7 @@ mod Bribe {
     use starknet::{ContractAddress, get_caller_address, get_contract_address};
     use openzeppelin::security::reentrancyguard::ReentrancyGuard;
     use openzeppelin::access::ownable::Ownable;
-    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
     use spin_lib::utils::{
         get_block_timestamp_u128, get_block_number_u128, and_and, or, u128_to_u256
     };

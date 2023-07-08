@@ -1,7 +1,7 @@
 #[contract]
 mod VE {
     use starknet::{ContractAddress, get_caller_address};
-    use openzeppelin::tokens::erc721::{ERC721};
+    use openzeppelin::token::erc721::{ERC721};
     use spin_ve::voting::Voting;
     use spin_ve::gauge_voting::GaugeVoting;
     use spin_lib::erc721_enumerable::{ERC721Enumerable};

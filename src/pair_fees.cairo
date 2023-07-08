@@ -3,7 +3,7 @@
 // this ensures that the curve does not need to be modified for LP shares
 mod PairFees {
     use starknet::{ContractAddress, get_caller_address, get_contract_address};
-    use openzeppelin::tokens::erc20::{IERC20DispatcherTrait, IERC20Dispatcher};
+    use openzeppelin::token::erc20::interface::{IERC20, IERC20DispatcherTrait, IERC20Dispatcher};
     use spin_lib::utils::and_and;
 
     #[storage]
