@@ -86,6 +86,7 @@ mod GaugeFactory {
             .unwrap_syscall();
 
         append_gauge(gauge_address);
+        _last_gauge::write(gauge_address);
 
         gauge_address
     }

@@ -435,7 +435,7 @@ mod Bribe {
     // ========== RESTRICTED FUNCTIONS ==========
     /// @notice add rewards tokens
     #[external]
-    fn add_rewards(rewards_token_: Array<ContractAddress>) {
+    fn add_rewards_tokens(rewards_token_: Array<ContractAddress>) {
         _assert_only_allowed();
         let mut i = 0_usize;
         loop {
@@ -449,7 +449,7 @@ mod Bribe {
 
     /// @notice add a single reward token
     #[external]
-    fn add_reward(rewards_token_: ContractAddress) {
+    fn add_reward_token(rewards_token_: ContractAddress) {
         _assert_only_allowed();
         _add_reward(rewards_token_);
     }

@@ -18,7 +18,10 @@ trait IBribe {
     fn notify_reward_amount(rewards_token_: ContractAddress, reward: u256);
 
     #[external]
-    fn add_reward(rewards_token_: ContractAddress);
+    fn add_reward_token(rewards_token_: ContractAddress);
+
+     #[external]
+    fn add_reward_tokens(rewards_token_: Array<ContractAddress>);
 
     #[external]
     fn set_voter(voter_: ContractAddress);
