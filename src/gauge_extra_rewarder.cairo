@@ -109,7 +109,7 @@ mod GaugeExtraRewarder {
     ) {}
 
     #[constructor]
-    fn cnstructor(reward_token_: ContractAddress, gauge_: ContractAddress) {
+    fn constructor(reward_token_: ContractAddress, gauge_: ContractAddress) {
         _reward_token_contract::write(reward_token_);
         _gauge_contract::write(gauge_);
         _pool_info::write(

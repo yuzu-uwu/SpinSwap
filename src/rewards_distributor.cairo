@@ -38,7 +38,7 @@ mod rewards_distributor {
     }
 
     #[constructor]
-    fn cnstructor(voting_escrow_: ContractAddress) {
+    fn constructor(voting_escrow_: ContractAddress) {
         let caller = get_caller_address();
 
         let t = get_block_timestamp_u128() / WEEK * WEEK;

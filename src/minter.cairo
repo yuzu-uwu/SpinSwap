@@ -50,7 +50,7 @@ mod Minter {
     ) {}
 
     #[constructor]
-    fn cnstructor(
+    fn constructor(
         voter_: ContractAddress, // the voting & distribution system
         ve_: ContractAddress, // the ve(3,3) system that will be locked into
         rewards_distributor_: ContractAddress // the distribution system that ensures users aren't diluted

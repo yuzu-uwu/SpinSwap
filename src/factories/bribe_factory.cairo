@@ -29,7 +29,7 @@ mod BribeFactory {
     }
 
     #[constructor]
-    fn cnstructor(
+    fn constructor(
         bribe_class_hash_: ClassHash, voter_: ContractAddress, permission_registry_: ContractAddress
     ) {
         _bribe_class_hash::write(bribe_class_hash_);
@@ -265,16 +265,16 @@ mod BribeFactory {
         new_index
     }
 
-    fn append_reward_token(reward_token_: ContractAddress) -> u256 {
-        let token_index = _all_default_reward_tokens_index::read();
-        _all_default_reward_tokens::write(token_index, reward_token_);
+    fn append_reward_token(reward_token_: ContractAddress) {
+        if _removed_defalut_reward_tokens::read(reward_token_) {
+            _removed_defalut_reward_tokens::write(reward_token_, false);
+        } else {
+            let token_index = _all_default_reward_tokens_index::read();
+            _all_default_reward_tokens::write(token_index, reward_token_);
 
-        let new_index = token_index + 1;
-        _all_default_reward_tokens_index::write(new_index);
-
-        _removed_defalut_reward_tokens::write(reward_token_, false);
-
-        new_index
+            let new_index = token_index + 1;
+            _all_default_reward_tokens_index::write(new_index);
+        }
     }
 
     fn default_reward_tokens() -> Array<ContractAddress> {

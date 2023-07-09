@@ -108,7 +108,7 @@ mod Bribe {
     fn Recovered(token: ContractAddress, amount: u256) {}
 
     #[constructor]
-    fn cnstructor(
+    fn constructor(
         owner_: ContractAddress,
         voter_: ContractAddress,
         bribe_factory_: ContractAddress,

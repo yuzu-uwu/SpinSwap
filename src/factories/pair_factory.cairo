@@ -47,7 +47,7 @@ mod PairFactory {
     ) {}
 
     #[constructor]
-    fn cnstructor(pair_class_hash_: ClassHash, pair_fees_clash_hash_: ClassHash) {
+    fn constructor(pair_class_hash_: ClassHash, pair_fees_clash_hash_: ClassHash) {
         let caller = get_caller_address();
 
         _pauser::write(caller);

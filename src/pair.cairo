@@ -152,7 +152,7 @@ mod Pair {
     fn Claim(sender: ContractAddress, recipient: ContractAddress, amount_0: u256, amount_1: u256) {}
 
     #[constructor]
-    fn cnstructor() {
+    fn constructor() {
         _factory::write(get_caller_address());
         let (token_0_, token_1_, stable_) = IPairFactoryDispatcher {
             contract_address: get_caller_address()

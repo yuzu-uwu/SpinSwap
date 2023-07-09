@@ -26,7 +26,7 @@ mod GaugeFactory {
     }
 
     #[constructor]
-    fn cnstructor(permission_registry_: ContractAddress, gauge_class_hash_: ClassHash) {
+    fn constructor(permission_registry_: ContractAddress, gauge_class_hash_: ClassHash) {
         Ownable::_transfer_ownership(get_caller_address()); //after deploy ownership to multisig
         _gauge_class_hash::write(gauge_class_hash_);
         _permissions_registry::write(permission_registry_);

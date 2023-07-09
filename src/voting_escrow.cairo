@@ -32,7 +32,7 @@ mod VotingEscrow {
     /// @notice Contract constructor
     /// @param token_addr `SPIN` token addresss
     #[constructor]
-    fn cnstructor(token_addr: ContractAddress, art_proxy: ContractAddress) {
+    fn constructor(token_addr: ContractAddress, art_proxy: ContractAddress) {
         let caller = get_caller_address();
 
         VE::_token::write(token_addr);

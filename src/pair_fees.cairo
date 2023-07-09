@@ -16,7 +16,7 @@ mod PairFees {
     }
 
     #[constructor]
-    fn cnstructor(token_0: ContractAddress, token_1: ContractAddress) {
+    fn constructor(token_0: ContractAddress, token_1: ContractAddress) {
         _pair::write(get_contract_address());
         _token_0::write(token_0);
         _token_1::write(token_1);
