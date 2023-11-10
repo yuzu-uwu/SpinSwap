@@ -1,7 +1,8 @@
 use core::traits::Into;
 use core::traits::TryInto;
-use starknet::{get_block_info, get_block_timestamp};
+use integer::u256_from_felt252;
 use box::BoxTrait;
+use starknet::{ContractAddress, contract_address_to_felt252, get_block_info, get_block_timestamp};
 
 
 fn get_block_number() -> u64 {
@@ -57,4 +58,15 @@ fn or(a: bool, b: bool) -> bool {
     }
 
     return false;
+}
+
+fn sort_token(
+    token_a: ContractAddress, token_b: ContractAddress
+) -> (ContractAddress, ContractAddress) {
+    if u256_from_felt252(
+        contract_address_to_felt252(token_a)
+    ) < u256_from_felt252(contract_address_to_felt252(token_b)) {
+        return (token_a, token_b);
+    }
+    (token_b, token_a)
 }

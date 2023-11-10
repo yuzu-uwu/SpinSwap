@@ -10,4 +10,5 @@ mod factories;
 mod pair_fees;
 mod pair;
 mod permissions_registry;
+mod router;
 mod interfaces;

@@ -11,6 +11,7 @@ mod PairFactory {
     use starknet::syscalls::deploy_syscall;
     use integer::u256_from_felt252;
     use hash::LegacyHash;
+    use spin_lib::utils::sort_token;
 
     struct Storage {
         _is_paused: bool,
@@ -261,18 +262,6 @@ mod PairFactory {
 
         new_index
     }
-
-    fn sort_token(
-        token_a: ContractAddress, token_b: ContractAddress
-    ) -> (ContractAddress, ContractAddress) {
-        if u256_from_felt252(
-            contract_address_to_felt252(token_a)
-        ) < u256_from_felt252(contract_address_to_felt252(token_b)) {
-            return (token_a, token_b);
-        }
-        (token_b, token_a)
-    }
-
 
     fn assert_only_pauser() {
         assert(get_caller_address() == _pauser::read(), 'only pauser');
